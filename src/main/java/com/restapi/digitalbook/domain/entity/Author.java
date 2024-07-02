@@ -1,18 +1,16 @@
-package com.restapi.digitalbook.domain.model;
+package com.restapi.digitalbook.domain.entity;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "tb_author")
 public class Author {
 
 	@Id
@@ -21,9 +19,6 @@ public class Author {
 	
 	@Column(nullable = false)
 	private String name;
-	
-	@JsonIgnore
-	private List<Ebook> ebooks = new ArrayList<>();
 
 	@Override
 	public int hashCode() {
@@ -44,7 +39,7 @@ public class Author {
 
 	@Override
 	public String toString() {
-		return "Author [id=" + id + ", name=" + name + ", ebooks=" + ebooks + "]";
+		return "Author [id=" + id + ", name=" + name + "]";
 	}
 
 	public Long getId() {
@@ -63,12 +58,4 @@ public class Author {
 		this.name = name;
 	}
 
-	public List<Ebook> getEbooks() {
-		return ebooks;
-	}
-
-	public void setEbooks(List<Ebook> ebooks) {
-		this.ebooks = ebooks;
-	}
-	
 }

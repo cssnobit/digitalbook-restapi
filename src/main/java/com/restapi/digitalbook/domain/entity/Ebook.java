@@ -1,4 +1,4 @@
-package com.restapi.digitalbook.domain.model;
+package com.restapi.digitalbook.domain.entity;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -10,8 +10,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "tb_ebook")
 public class Ebook {
 	
 	@Id
@@ -21,11 +27,11 @@ public class Ebook {
 	@Column(nullable = false)
 	private String title;
 	
-	@Column(nullable = false)
-	private String description;
+	@Column
+	private String urlImg;
 	
 	@Column(nullable = false)
-	private String shortDescription;
+	private String description;
 	
 	@Column(nullable = false, unique = true)
 	private String asin;
@@ -33,10 +39,12 @@ public class Ebook {
 	@Column(nullable = false)
 	private BigDecimal price;
 	
-	@Column(nullable = false)
+	@ManyToOne
+	@JoinColumn(nullable = false)
 	private Publisher publisher;
 	
-	@Column(nullable = false)
+	@ManyToMany
+	@JoinTable(joinColumns = @JoinColumn(nullable = false))
 	private List<Author> authors = new ArrayList<>();
 
 	public Long getId() {
@@ -61,14 +69,6 @@ public class Ebook {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getShortDescription() {
-		return shortDescription;
-	}
-
-	public void setShortDescription(String shortDescription) {
-		this.shortDescription = shortDescription;
 	}
 
 	public String getAsin() {
@@ -122,8 +122,7 @@ public class Ebook {
 
 	@Override
 	public String toString() {
-		return "Ebook [id=" + id + ", title=" + title + ", description=" + description + ", shortDescription="
-				+ shortDescription + ", asin=" + asin + ", price=" + price + ", publisher=" + publisher + ", authors="
+		return "Ebook [id=" + id + ", title=" + title + ", description=" + description + ", asin=" + asin + ", price=" + price + ", publisher=" + publisher + ", authors="
 				+ authors + "]";
 	}
 	

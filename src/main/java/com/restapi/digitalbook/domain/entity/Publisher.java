@@ -1,4 +1,4 @@
-package com.restapi.digitalbook.domain.model;
+package com.restapi.digitalbook.domain.entity;
 
 import java.util.Objects;
 
@@ -7,8 +7,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "tb_publisher")
 public class Publisher {
 
 	@Id
