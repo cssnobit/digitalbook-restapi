@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.restapi.digitalbook.domain.entity.Author;
+import com.restapi.digitalbook.domain.dto.AuthorResponseDTO;
 import com.restapi.digitalbook.domain.service.AuthorService;
 
 @RestController
@@ -18,7 +18,7 @@ public class AuthorController {
 	private AuthorService authorService;
 	
 	@GetMapping
-	public List<Author> listAll() {
+	public List<AuthorResponseDTO> listAll() {
 		return authorService.listAll();
 	}
 }
