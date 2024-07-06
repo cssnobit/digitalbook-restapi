@@ -16,16 +16,16 @@ public class AuthorService {
 	private AuthorRepository authorRepository;
 	
 	public List<AuthorResponseDTO> listAll() {
-		List<AuthorResponseDTO> authorsDTO = new ArrayList<>();
+		List<AuthorResponseDTO> response = new ArrayList<>();
 		authorRepository.findAll()
 				.forEach(author -> {
 					AuthorResponseDTO authorDTO = new AuthorResponseDTO(author.getId(), 
 							author.getName());
 					
-					authorsDTO.add(authorDTO);
+					response.add(authorDTO);
 				});
 		
-		return authorsDTO;
+		return response;
 	}
 	
 	

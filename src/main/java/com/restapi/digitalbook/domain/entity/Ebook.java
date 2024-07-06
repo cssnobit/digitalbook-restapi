@@ -103,6 +103,14 @@ public class Ebook {
 		this.authors = authors;
 	}
 
+	public String getUrlImg() {
+		return urlImg;
+	}
+
+	public void setUrlImg(String urlImg) {
+		this.urlImg = urlImg;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
