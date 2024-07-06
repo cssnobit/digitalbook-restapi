@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restapi.digitalbook.domain.dto.ListEbookResponseDTO;
+import com.restapi.digitalbook.domain.dto.SingleEbookResponseDTO;
 import com.restapi.digitalbook.domain.service.EbookService;
 
 @RequestMapping("/ebooks")
@@ -20,5 +22,10 @@ public class EbookController {
 	@GetMapping
 	public List<ListEbookResponseDTO> listAll() {
 		return ebookService.listAll();
+	}
+	
+	@GetMapping("/{ebookId}")
+	public SingleEbookResponseDTO getEbook(@PathVariable Long ebookId) {
+		return ebookService.getEbook(ebookId);
 	}
 }
